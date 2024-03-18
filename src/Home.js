@@ -1,11 +1,12 @@
 import Header from './components/Header.js'
 
-function App() {
+function Home() {
   return (
     <div>
       <Header />
+      Home
     </div>
   );
 }
 
-export default App;
+export default Home;
