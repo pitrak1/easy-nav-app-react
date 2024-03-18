@@ -1,19 +1,30 @@
 import Header from './components/Header.js'
 import {useState} from 'react'
+import axios from 'axios'
+import {expressUrl} from './ExternalUrls.js'
 
 import './Register.css'
 
 function Register() {
-  const [user, setUser] = useState();
+  const [name, setName] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
   const handleSubmit = () => {
-    console.log("SUBMIT")
+    console.log(name, password, confirmPassword)
+    axios.post(
+      expressUrl('/register'), 
+      {name, password, confirmPassword}, 
+      {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}}
+    ).then((response) => {
+      console.log("SUCCESS")
+    }).catch((error) => {
+      console.log("FAILURE")
+    })
   }
 
-  const handleUserChange = (e) => {
-    setUser(e.target.value);
+  const handleNameChange = (e) => {
+    setName(e.target.value);
   }
 
   const handlePasswordChange = (e) => {
@@ -32,7 +43,7 @@ function Register() {
           <label htmlFor="name" className="Register-form-field-label">
             Username
           </label>
-          <input type="text" id="name" onChange={handleUserChange} value={user} className="Register-form-field-input"/>
+          <input type="text" id="name" onChange={handleNameChange} value={name} className="Register-form-field-input"/>
         </div>
         <div className="Register-form-field">
           <label htmlFor="password" className="Register-form-field-label">
