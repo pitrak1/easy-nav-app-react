@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import Home from './Home';
-import Search from './Search';
-import Register from './Register';
-import Login from './Login';
+import Home from './views/Home';
+import Search from './views/Search';
+import Register from './views/Register';
+import Login from './views/Login';
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+
+import './index.css';
 
 const router = createBrowserRouter([
   {
