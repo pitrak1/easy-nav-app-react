@@ -1,20 +1,25 @@
-import './Header.css';
 import NavButton from './NavButton.js'
+import {useNavigate} from 'react-router-dom'
+import LoginDisplay from './LoginDisplay.js'
+
+import './Header.css';
 
 function Header() {
+  const navigate = useNavigate()
+
   const onClickHomeButton = () => {
-    console.log("Clicked home");
+    navigate("/")
   }
 
   const onClickSearchButton = () => {
-    console.log("Clicked search");
+    navigate("/search")
   }
 
   return (
     <div>
       <div className="Header-login-container">
         <h1 className="Header-login-name">EasyNav</h1>
-        <a href="www.google.com" className="Header-login-display">Login</a>
+        <LoginDisplay />
       </div>
       <div className="Header-navbar-container">
         <NavButton text="Home" onClick={onClickHomeButton}/>

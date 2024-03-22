@@ -2,6 +2,7 @@ import Header from './components/Header.js'
 import {useState} from 'react'
 import {expressUrl} from './utilities/ExternalUrls.js'
 import {post} from './utilities/Request.js'
+import {useNavigate} from 'react-router-dom'
 
 import './Register.css'
 
@@ -10,27 +11,16 @@ function Register() {
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
+  const navigate = useNavigate();
+
   const handleSubmit = async () => {
     try {
       const response = await post(
         expressUrl('/register'),
         {name, password, confirmPassword}
       )
-      console.log(response.data)
       sessionStorage.setItem("token", response.data.token)
-    } catch(error) {  
-      console.log(error);
-    }
-  }
-
-  const handleSubmit2 = async () => {
-    try {
-      const response = await post(
-        expressUrl('/register/auth'),
-        {name, password, confirmPassword: ''}
-      )
-      console.log(response.data)
-      // sessionStorage.setItem("token", response.data.token)
+      navigate('/')
     } catch(error) {  
       console.log(error);
     }
@@ -71,7 +61,6 @@ function Register() {
           <input type="password" id="confirmPassword" onChange={handleConfirmPasswordChange} value={confirmPassword} className="Register-form-field-input"/>
         </div>
         <input type="button" value="Create Account" onClick={handleSubmit} className="Register-form-submit-button"/>
-        <input type="button" value="Create Account" onClick={handleSubmit2} className="Register-form-submit-button"/>
       </div>
     </div>
   );
