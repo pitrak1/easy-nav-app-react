@@ -2,8 +2,7 @@ import {useNavigate} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import {expressUrl} from '../utilities/ExternalUrls.js'
 import {get} from '../utilities/Request.js'
-
-import './Header.css';
+import HeaderButton from './HeaderButton.js'
 
 function LoginDisplay() {
   const navigate = useNavigate()
@@ -38,19 +37,22 @@ function LoginDisplay() {
     window.location.reload()
   }
 
+  const onClickProfileButton = () => {
+    console.log("profile")
+  }
+
   if (loading) {
     return <div>Loading...</div>
   } else if (userData) {
-    return <div>
-      <div>Hello {userData.name}</div>
-      <input type="button" value="Logout" onClick={onClickLogoutButton} className="Header-login-button"/>
+    return <div className="LoginDisplay-container">
+      <HeaderButton text={userData.name} onClick={onClickProfileButton} />
+      <HeaderButton text="Logout" onClick={onClickLogoutButton} />
     </div>
   } else {
     return (
-      <div>
-        {loading && <div>LOADING</div>}
-        <input type="button" value="Login" onClick={onClickLoginButton} className="Header-login-button"/>
-        <input type="button" value="Register" onClick={onClickRegisterButton} className="Header-login-button"/>
+      <div className="LoginDisplay-container">
+        <HeaderButton text="Login" onClick={onClickLoginButton} />
+        <HeaderButton text="Register" onClick={onClickRegisterButton} />
       </div>
     );
   }
