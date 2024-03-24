@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Home from './views/Home';
 import Search from './views/Search';
+import Create from './views/Create';
 import Register from './views/Register';
 import Login from './views/Login';
 import reportWebVitals from './reportWebVitals';
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/search",
     element: <Search />
+  },
+  {
+    path: '/create',
+    element: <Create />
   },
   {
     path: "/register",

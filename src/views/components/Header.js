@@ -7,12 +7,18 @@ import './Header.css';
 function Header() {
   const navigate = useNavigate()
 
+  const token = sessionStorage.getItem('token')
+
   const onClickHomeButton = () => {
     navigate("/")
   }
 
   const onClickSearchButton = () => {
     navigate("/search")
+  }
+
+  const onClickCreateButton = () => {
+    navigate("/create")
   }
 
   return (
@@ -24,6 +30,7 @@ function Header() {
       <div className="Header-navbar-container">
         <NavButton text="Home" onClick={onClickHomeButton}/>
         <NavButton text="Search" onClick={onClickSearchButton}/>
+        {token && <NavButton text="Create" onClick={onClickCreateButton} />}
       </div>
     </div>
   );
