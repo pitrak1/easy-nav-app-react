@@ -37,7 +37,7 @@ function Register() {
   }
 
   const validateName = () => {
-    const regex = new RegExp('/^([a-zA-Z0-9_-]){8, 18}$/')
+    const regex = new RegExp('^([a-zA-Z0-9_-]){8,18}$')
 
     if (regex.test(name)) {
       setNameErrorText('')
@@ -49,7 +49,7 @@ function Register() {
   }
 
   const validatePassword = () => {
-    const regex = new RegExp('/^.{8, 18}$/')
+    const regex = new RegExp('^.{8,18}$')
 
     if (regex.test(name)) {
       setPasswordErrorText('')
