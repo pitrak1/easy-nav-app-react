@@ -3,26 +3,70 @@ import {useState} from 'react'
 import {expressUrl} from './utilities/ExternalUrls.js'
 import {post} from './utilities/Request.js'
 import {useNavigate} from 'react-router-dom'
+import TextInput from './components/TextInput.js'
 
 import './Register.css'
 
 function Register() {
-  const [name, setName] = useState();
-  const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
+  const [name, setName] = useState('');
+  const [nameErrorText, setNameErrorText] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordErrorText, setPasswordErrorText] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [confirmPasswordErrorText, setConfirmPasswordErrorText] = useState('');
 
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    try {
-      const response = await post(
-        expressUrl('/register'),
-        {name, password, confirmPassword}
-      )
-      sessionStorage.setItem("token", response.data.token)
-      navigate('/')
-    } catch(error) {  
-      console.log(error);
+    const nameValid = validateName()
+    const passwordValid = validatePassword()
+    const confirmPasswordValid = validateConfirmPassword()
+
+    if (nameValid && passwordValid && confirmPasswordValid) {
+      try {
+        const response = await post(
+          expressUrl('/register'),
+          {name, password, confirmPassword}
+        )
+        sessionStorage.setItem("token", response.data.token)
+        navigate('/')
+      } catch(error) {  
+        console.log(error);
+      }
+    }
+  }
+
+  const validateName = () => {
+    const regex = new RegExp('/^([a-zA-Z0-9_-]){8, 18}$/')
+
+    if (regex.test(name)) {
+      setNameErrorText('')
+      return true
+    } else {
+      setNameErrorText('Usernames must be between 8 and 18 alphanumeric characters')
+      return false
+    }
+  }
+
+  const validatePassword = () => {
+    const regex = new RegExp('/^.{8, 18}$/')
+
+    if (regex.test(name)) {
+      setPasswordErrorText('')
+      return true
+    } else {
+      setPasswordErrorText('Passwords must be between 8 and 18 characters')
+      return false
+    }
+  }
+
+  const validateConfirmPassword = () => {
+    if (password === confirmPassword) {
+      setConfirmPasswordErrorText('')
+      return true
+    } else {
+      setConfirmPasswordErrorText('Passwords must match')
+      return false
     }
   }
 
@@ -43,22 +87,33 @@ function Register() {
       <Header />
       <div className="Register-form-container">
         <div className="Register-form-field">
-          <label htmlFor="name" className="Register-form-field-label">
-            Username
-          </label>
-          <input type="text" id="name" onChange={handleNameChange} value={name} className="Register-form-field-input"/>
+          <TextInput
+            text="Username"
+            id="name"
+            value={name}
+            onChange={handleNameChange}
+            errorText={nameErrorText}
+          />
         </div>
         <div className="Register-form-field">
-          <label htmlFor="password" className="Register-form-field-label">
-            Password
-          </label>
-          <input type="password" id="password" onChange={handlePasswordChange} value={password} className="Register-form-field-input"/>
+          <TextInput
+            text="Password"
+            id="password"
+            value={password}
+            onChange={handlePasswordChange}
+            errorText={passwordErrorText}
+            isPassword={true}
+          />
         </div>
         <div className="Register-form-field">
-          <label htmlFor="confirmPassword" className="Register-form-field-label">
-            Confirm Password
-          </label>
-          <input type="password" id="confirmPassword" onChange={handleConfirmPasswordChange} value={confirmPassword} className="Register-form-field-input"/>
+          <TextInput
+            text="Confirm Password"
+            id="confirmPassword"
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
+            errorText={confirmPasswordErrorText}
+            isPassword={true}
+          />
         </div>
         <input type="button" value="Create Account" onClick={handleSubmit} className="Register-form-submit-button"/>
       </div>

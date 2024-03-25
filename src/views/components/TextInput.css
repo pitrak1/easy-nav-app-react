@@ -1,0 +1,23 @@
+.TextInput-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.TextInput-label {
+	font-size: 18px;
+	display: block;
+}
+
+.TextInput-input {
+	font-size: 20px;
+	display: block;
+	border-radius: 4px;
+	padding: 5px;
+	margin-top: 5px;
+	border-style: solid;
+}
+
+.TextInput-error-message {
+	color: darkred;
+}

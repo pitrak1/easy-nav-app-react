@@ -3,6 +3,7 @@ import {useState} from 'react'
 import {expressUrl} from './utilities/ExternalUrls.js'
 import {post} from './utilities/Request.js'
 import {useNavigate} from 'react-router-dom'
+import TextInput from './components/TextInput.js'
 
 import './Login.css'
 
@@ -38,16 +39,21 @@ function Login() {
       <Header />
       <div className="Login-form-container">
         <div className="Login-form-field">
-          <label htmlFor="name" className="Login-form-field-label">
-            Username
-          </label>
-          <input type="text" id="name" onChange={handleNameChange} value={name} className="Login-form-field-input"/>
+          <TextInput
+            text="Username"
+            id="name"
+            value={name}
+            onChange={handleNameChange}
+          />
         </div>
         <div className="Login-form-field">
-          <label htmlFor="password" className="Login-form-field-label">
-            Password
-          </label>
-          <input type="password" id="password" onChange={handlePasswordChange} value={password} className="Login-form-field-input"/>
+          <TextInput
+            text="Password"
+            id="password"
+            value={password}
+            onChange={handlePasswordChange}
+            isPassword={true}
+          />
         </div>
         <input type="button" value="Login" onClick={handleSubmit} className="Login-form-submit-button"/>
       </div>

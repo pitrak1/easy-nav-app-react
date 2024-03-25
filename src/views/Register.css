@@ -8,20 +8,6 @@
 	padding-top: 20px;
 }
 
-.Register-form-field-label {
-	font-size: 18px;
-	display: block;
-}
-
-.Register-form-field-input {
-	font-size: 20px;
-	display: block;
-	border-radius: 4px;
-	padding: 5px;
-	margin-top: 5px;
-	border-style: solid;
-}
-
 .Register-form-submit-button {
 	font-size: 20px;
 	padding: 10px;
