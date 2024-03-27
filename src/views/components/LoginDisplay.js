@@ -1,28 +1,13 @@
 import {useNavigate} from 'react-router-dom'
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import {expressUrl} from '../utilities/ExternalUrls.js'
 import {get} from '../utilities/Request.js'
+import {UserContext} from '../utilities/UserProvider.js'
 import HeaderButton from './HeaderButton.js'
 
 function LoginDisplay() {
   const navigate = useNavigate()
-
-  const [loading, setLoading] = useState()
-  const [userData, setUserData] = useState()
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const token = sessionStorage.getItem('token')
-      if (!userData && token) {
-        setLoading(true)
-        const response = await get(expressUrl('/me'))
-        setUserData(response.data.user)
-        setLoading(false)
-      }   
-    }
-
-    fetchData()
-  })
+  const userContext = useContext(UserContext)
 
   const onClickLoginButton = () => {
     navigate("/login")
@@ -33,19 +18,17 @@ function LoginDisplay() {
   }
 
   const onClickLogoutButton = () => {
-    sessionStorage.removeItem('token') 
-    window.location.reload()
+    sessionStorage.removeItem('token')
+    userContext.actions.setUser(null)
   }
 
   const onClickProfileButton = () => {
     console.log("profile")
   }
 
-  if (loading) {
-    return <div>Loading...</div>
-  } else if (userData) {
+  if (userContext.state.user) {
     return <div className="LoginDisplay-container">
-      <HeaderButton text={userData.name} onClick={onClickProfileButton} />
+      <HeaderButton text={userContext.state.user.name} onClick={onClickProfileButton} />
       <HeaderButton text="Logout" onClick={onClickLogoutButton} />
     </div>
   } else {

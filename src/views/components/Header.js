@@ -1,13 +1,15 @@
 import NavButton from './NavButton.js'
 import {useNavigate} from 'react-router-dom'
 import LoginDisplay from './LoginDisplay.js'
+import {useContext} from 'react'
+import {UserContext} from '../utilities/UserProvider.js'
 
 import './Header.css';
 
 function Header() {
   const navigate = useNavigate()
 
-  const token = sessionStorage.getItem('token')
+  const userContext = useContext(UserContext)
 
   const onClickHomeButton = () => {
     navigate("/")
@@ -30,7 +32,7 @@ function Header() {
       <div className="Header-navbar-container">
         <NavButton text="Home" onClick={onClickHomeButton}/>
         <NavButton text="Search" onClick={onClickSearchButton}/>
-        {token && <NavButton text="Create" onClick={onClickCreateButton} />}
+        {userContext.state.user && <NavButton text="Create" onClick={onClickCreateButton} />}
       </div>
     </div>
   );

@@ -1,9 +1,10 @@
 import Header from './components/Header.js'
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import {expressUrl} from './utilities/ExternalUrls.js'
 import {post} from './utilities/Request.js'
 import {useNavigate} from 'react-router-dom'
 import TextInput from './components/TextInput.js'
+import {UserContext} from './utilities/UserProvider.js'
 
 import './Login.css'
 
@@ -12,6 +13,7 @@ function Login() {
   const [password, setPassword] = useState();
 
   const navigate = useNavigate();
+  const userContext = useContext(UserContext)
 
   const handleSubmit = async () => {
     try {
@@ -20,6 +22,7 @@ function Login() {
         {name, password}
       )
       sessionStorage.setItem("token", response.data.token)
+      userContext.actions.setUser(response.data.user)
       navigate('/')
     } catch(error) {  
       console.log(error);
