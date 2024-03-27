@@ -1,22 +1,22 @@
 import Header from './components/Header.js'
-import {useState, useContext} from 'react'
-import {expressUrl} from './utilities/ExternalUrls.js'
-import {post} from './utilities/Request.js'
-import {useNavigate} from 'react-router-dom'
+import { useState, useContext } from 'react'
+import { expressUrl } from './utilities/ExternalUrls.js'
+import { post } from './utilities/Request.js'
+import { useNavigate } from 'react-router-dom'
 import TextInput from './components/TextInput.js'
-import {UserContext} from './utilities/UserProvider.js'
+import { UserContext } from './utilities/UserProvider.js'
 
 import './Register.css'
 
-function Register() {
-  const [name, setName] = useState('');
-  const [nameErrorText, setNameErrorText] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordErrorText, setPasswordErrorText] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [confirmPasswordErrorText, setConfirmPasswordErrorText] = useState('');
+function Register () {
+  const [name, setName] = useState('')
+  const [nameErrorText, setNameErrorText] = useState('')
+  const [password, setPassword] = useState('')
+  const [passwordErrorText, setPasswordErrorText] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [confirmPasswordErrorText, setConfirmPasswordErrorText] = useState('')
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const userContext = useContext(UserContext)
 
   const handleSubmit = async () => {
@@ -28,19 +28,19 @@ function Register() {
       try {
         const response = await post(
           expressUrl('/register'),
-          {name, password, confirmPassword}
+          { name, password, confirmPassword }
         )
-        sessionStorage.setItem("token", response.data.token)
+        sessionStorage.setItem('token', response.data.token)
         userContext.actions.setUser(response.data.user)
         navigate('/')
-      } catch(error) {  
-        console.log(error);
+      } catch (error) {
+        console.log(error)
       }
     }
   }
 
   const validateName = () => {
-    const regex = new RegExp('^([a-zA-Z0-9_-]){8,18}$')
+    const regex = /^([a-zA-Z0-9_-]){8,18}$/
 
     if (regex.test(name)) {
       setNameErrorText('')
@@ -52,7 +52,7 @@ function Register() {
   }
 
   const validatePassword = () => {
-    const regex = new RegExp('^.{8,18}$')
+    const regex = /^.{8,18}$/
 
     if (regex.test(name)) {
       setPasswordErrorText('')
@@ -74,54 +74,54 @@ function Register() {
   }
 
   const handleNameChange = (e) => {
-    setName(e.target.value);
+    setName(e.target.value)
   }
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+    setPassword(e.target.value)
   }
 
   const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
+    setConfirmPassword(e.target.value)
   }
 
   return (
     <div>
       <Header />
-      <div className="Register-form-container">
-        <div className="Register-form-field">
+      <div className='Register-form-container'>
+        <div className='Register-form-field'>
           <TextInput
-            text="Username"
-            id="name"
+            text='Username'
+            id='name'
             value={name}
             onChange={handleNameChange}
             errorText={nameErrorText}
           />
         </div>
-        <div className="Register-form-field">
+        <div className='Register-form-field'>
           <TextInput
-            text="Password"
-            id="password"
+            text='Password'
+            id='password'
             value={password}
             onChange={handlePasswordChange}
             errorText={passwordErrorText}
-            isPassword={true}
+            isPassword
           />
         </div>
-        <div className="Register-form-field">
+        <div className='Register-form-field'>
           <TextInput
-            text="Confirm Password"
-            id="confirmPassword"
+            text='Confirm Password'
+            id='confirmPassword'
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
             errorText={confirmPasswordErrorText}
-            isPassword={true}
+            isPassword
           />
         </div>
-        <input type="button" value="Create Account" onClick={handleSubmit} className="Register-form-submit-button"/>
+        <input type='button' value='Create Account' onClick={handleSubmit} className='Register-form-submit-button'/>
       </div>
     </div>
-  );
+  )
 }
 
-export default Register;
+export default Register

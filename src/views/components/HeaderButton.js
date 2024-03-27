@@ -1,14 +1,14 @@
-import './HeaderButton.css';
+import './HeaderButton.css'
 
-function HeaderButton({text, onClick}) {
+function HeaderButton ({ text, onClick }) {
   return (
-    <input 
-      type="button" 
-      value={text} 
-      onClick={onClick} 
-      className="HeaderButton-button"
+    <input
+      type='button'
+      value={text}
+      onClick={onClick}
+      className='HeaderButton-button'
     />
   )
 }
 
-export default HeaderButton;
+export default HeaderButton

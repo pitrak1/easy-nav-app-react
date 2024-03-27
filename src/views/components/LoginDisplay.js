@@ -1,20 +1,18 @@
-import {useNavigate} from 'react-router-dom'
-import {useState, useEffect, useContext} from 'react'
-import {expressUrl} from '../utilities/ExternalUrls.js'
-import {get} from '../utilities/Request.js'
-import {UserContext} from '../utilities/UserProvider.js'
+import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { UserContext } from '../utilities/UserProvider.js'
 import HeaderButton from './HeaderButton.js'
 
-function LoginDisplay() {
+function LoginDisplay () {
   const navigate = useNavigate()
   const userContext = useContext(UserContext)
 
   const onClickLoginButton = () => {
-    navigate("/login")
+    navigate('/login')
   }
 
   const onClickRegisterButton = () => {
-    navigate("/register")
+    navigate('/register')
   }
 
   const onClickLogoutButton = () => {
@@ -23,22 +21,24 @@ function LoginDisplay() {
   }
 
   const onClickProfileButton = () => {
-    console.log("profile")
+    console.log('profile')
   }
 
   if (userContext.state.user) {
-    return <div className="LoginDisplay-container">
-      <HeaderButton text={userContext.state.user.name} onClick={onClickProfileButton} />
-      <HeaderButton text="Logout" onClick={onClickLogoutButton} />
-    </div>
+    return (
+      <div className='LoginDisplay-container'>
+        <HeaderButton text={userContext.state.user.name} onClick={onClickProfileButton} />
+        <HeaderButton text='Logout' onClick={onClickLogoutButton} />
+      </div>
+    )
   } else {
     return (
-      <div className="LoginDisplay-container">
-        <HeaderButton text="Login" onClick={onClickLoginButton} />
-        <HeaderButton text="Register" onClick={onClickRegisterButton} />
+      <div className='LoginDisplay-container'>
+        <HeaderButton text='Login' onClick={onClickLoginButton} />
+        <HeaderButton text='Register' onClick={onClickRegisterButton} />
       </div>
-    );
+    )
   }
 }
 
-export default LoginDisplay;
+export default LoginDisplay

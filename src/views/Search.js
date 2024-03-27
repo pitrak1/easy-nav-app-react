@@ -1,12 +1,12 @@
 import Header from './components/Header.js'
 
-function Search() {
+function Search () {
   return (
     <div>
       <Header />
       Search
     </div>
-  );
+  )
 }
 
-export default Search;
+export default Search
