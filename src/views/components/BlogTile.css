@@ -1,0 +1,34 @@
+.BlogTile-container {
+	border-radius: 6px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #949494;
+	width: 200px;
+	height: 200px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.BlogTile-name {
+	flex: 1;
+}
+
+.BlogTile-post-count {
+	font-size: 18px;
+	font-weight: bold;
+	flex: 1;
+}
+
+.BlogTile-view-button {
+  font-size: 20px;
+  border-radius: 8px;
+  border-style: solid;
+  background-color: #3F7FBF;
+  color: white;
+  font-weight: bold;
+  min-width: 120px;
+  margin-bottom: 30px;
+  flex: 1;
+}

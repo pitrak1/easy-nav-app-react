@@ -19,8 +19,8 @@ function Header () {
     navigate('/search')
   }
 
-  const onClickCreateButton = () => {
-    navigate('/create')
+  const onClickProfileButton = () => {
+    navigate('/profile')
   }
 
   return (
@@ -33,7 +33,7 @@ function Header () {
         <NavButton text='Home' onClick={onClickHomeButton} />
         <NavButton text='Search' onClick={onClickSearchButton} />
         {userContext.state.user && (
-          <NavButton text='Create' onClick={onClickCreateButton} />
+          <NavButton text='Profile' onClick={onClickProfileButton} />
         )}
       </div>
     </div>

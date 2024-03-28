@@ -20,14 +20,9 @@ function LoginDisplay () {
     userContext.actions.setUser(null)
   }
 
-  const onClickProfileButton = () => {
-    console.log('profile')
-  }
-
   if (userContext.state.user) {
     return (
       <div className='LoginDisplay-container'>
-        <HeaderButton text={userContext.state.user.name} onClick={onClickProfileButton} />
         <HeaderButton text='Logout' onClick={onClickLogoutButton} />
       </div>
     )

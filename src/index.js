@@ -2,9 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Home from './views/Home'
 import Search from './views/Search'
-import Create from './views/Create'
+import Profile from './views/Profile'
 import Register from './views/Register'
 import Login from './views/Login'
+import CreateBlog from './views/CreateBlog'
+import ViewBlog from './views/ViewBlog'
+import CreatePost from './views/CreatePost'
 import reportWebVitals from './reportWebVitals'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { UserProvider } from './views/utilities/UserProvider.js'
@@ -14,15 +17,15 @@ import './index.css'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: <Home />
   },
   {
     path: '/search',
     element: <Search />
   },
   {
-    path: '/create',
-    element: <Create />
+    path: '/profile',
+    element: <Profile />
   },
   {
     path: '/register',
@@ -31,6 +34,18 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />
+  },
+  {
+    path: '/blogs/create',
+    element: <CreateBlog />
+  },
+  {
+    path: '/blogs/:blogId',
+    element: <ViewBlog />
+  },
+  {
+    path: '/blogs/:blogId/posts/create',
+    element: <CreatePost />
   }
 ])
 

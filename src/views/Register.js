@@ -118,7 +118,7 @@ function Register () {
             isPassword
           />
         </div>
-        <input type='button' value='Create Account' onClick={handleSubmit} className='Register-form-submit-button'/>
+        <input type='button' value='Create Account' onClick={handleSubmit} className='Register-form-submit-button' />
       </div>
     </div>
   )
