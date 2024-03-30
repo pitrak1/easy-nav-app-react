@@ -8,6 +8,7 @@ import Login from './views/Login'
 import CreateBlog from './views/CreateBlog'
 import ViewBlog from './views/ViewBlog'
 import CreatePost from './views/CreatePost'
+import ViewPost from './views/ViewPost'
 import reportWebVitals from './reportWebVitals'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { UserProvider } from './views/utilities/UserProvider.js'
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
   {
     path: '/blogs/:blogId/posts/create',
     element: <CreatePost />
+  },
+  {
+    path: '/blogs/:blogId/posts/:postId',
+    element: <ViewPost />
   }
 ])
 

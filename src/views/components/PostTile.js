@@ -6,7 +6,7 @@ function PostTile ({ post }) {
   const navigate = useNavigate()
 
   const onClickViewButton = async () => {
-    navigate(`/blogs/${post.id}`)
+    navigate(`/blogs/${post.blog_id}/posts/${post.id}`)
   }
 
   return (
