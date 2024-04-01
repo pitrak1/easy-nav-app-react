@@ -1,6 +1,8 @@
 module.exports = {
   extends: ['standard', 'standard-jsx'],
   globals: {
-    sessionStorage: 'writable'
+    sessionStorage: 'writable',
+    test: 'writable',
+    expect: 'writable'
   }
 }
